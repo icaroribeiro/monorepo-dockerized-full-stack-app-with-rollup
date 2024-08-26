@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "lib": ["es2023"],
+    "module": "ESNext",
+    "target": "es2022",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "Bundler",
+
+    /* Linting */
+    "strict": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "prettier.config.mjs",
+    "jest.config.mjs",
+    "rollup.config.mjs"
+  ],
+  "exclude": ["node_modules", "dist/**/*.js"]
+}

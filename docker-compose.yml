@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  client:
+    container_name: client-container
+    build:
+      context: .
+      dockerfile: ./apps/client/Dockerfile.multi-stage
+    restart: always
+    ports:
+      - 3000:3001
+  
+  server:
+    container_name: server-container
+    build:
+      context: .
+      dockerfile: ./apps/server/Dockerfile.multi-stage
+    restart: always
+    ports:
+      - 5000:5001
+  
+  datastore:
+    image: mysql:8.0.32
+    container_name: datastore-container
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgsecret
+    restart: always
+    ports:
+      - "5433:5434"
+    volumes:
+      - database:/var/lib/postgresql

@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "./apps/client",
+			"name": "client",
+		},
+		{
+			"path": "./apps/server",
+			"name": "server",
+		},
+		{
+			"path": "./packages/datastore",
+			"name": "datastore",
+		},
+		{
+			"path": ".",
+			"name": "ROOT",
+		},
+	],
+}

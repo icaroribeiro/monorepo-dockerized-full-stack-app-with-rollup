@@ -1,0 +1,37 @@
+# Stage 1: Configure the base image
+# --------------------------------------------------
+FROM node:20-alpine AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+    
+# Stage 2: Configure the image for build
+# --------------------------------------------------
+FROM base AS builder
+RUN apk update
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+COPY . .
+RUN pnpm install turbo --global
+RUN turbo prune server --docker
+
+# Stage 3: Configure the installer image
+# --------------------------------------------------
+FROM base AS installer
+RUN apk update
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+COPY --from=builder /app/out/json/ .
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+COPY --from=builder /app/out/full/ .
+RUN pnpm turbo build --filter=server...
+
+# Stage 4: Configure the runner image
+# --------------------------------------------------
+FROM node:20-slim AS runner
+WORKDIR /app
+COPY --from=installer /app/apps/server/dist ./dist
+ENV PORT=5001
+ENV NODE_ENV=production
+EXPOSE ${PORT}
+CMD ["node", "dist/bundle.cjs.js"]
