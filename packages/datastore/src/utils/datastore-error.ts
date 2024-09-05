@@ -1,4 +1,4 @@
-class DataSourceError extends Error {
+class DatastoreError extends Error {
   status: string
   constructor(
     public statusCode: number,
@@ -10,4 +10,4 @@ class DataSourceError extends Error {
   }
 }
 
-export { DataSourceError }
+export { DatastoreError }

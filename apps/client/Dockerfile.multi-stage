@@ -32,7 +32,7 @@ FROM node:20-slim AS runner
 RUN npm install serve --global
 WORKDIR /app
 COPY --from=installer /app/apps/client/dist ./dist
-ENV PORT=3001
+ENV PORT=3000
 ENV NODE_ENV=production
 EXPOSE ${PORT}
 CMD ["sh", "-c", "serve -p ${PORT} dist"]

@@ -4,10 +4,6 @@
     "module": "ESNext",
     "target": "es2022",
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "strictPropertyInitialization": false,
 
     /* Bundler mode */
     "moduleResolution": "Bundler",

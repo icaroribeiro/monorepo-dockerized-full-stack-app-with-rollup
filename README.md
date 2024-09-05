@@ -8,3 +8,22 @@ docker rm -vf $(docker ps -aq)
 
 # Remove all images
 docker rmi -f $(docker images -aq)
+
+# Set of tasks related to the adminer
+# --------------------------------------------------
+startup-adminer:
+	docker-compose up --build -d adminer
+
+shutdown-adminer:
+	docker-compose down -v --rmi local adminer
+
+- docker-compose.yml
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  adminer:

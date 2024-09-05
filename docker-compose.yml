@@ -8,7 +8,9 @@ services:
       dockerfile: ./apps/client/Dockerfile.multi-stage
     restart: always
     ports:
-      - 3000:3001
+      - 3000:3000
+    volumes:
+      - client:/opt/client
   
   server:
     container_name: server-container
@@ -17,16 +19,26 @@ services:
       dockerfile: ./apps/server/Dockerfile.multi-stage
     restart: always
     ports:
-      - 5000:5001
+      - 5000:5000
+    depends_on:
+      - datastore
+    volumes:
+      - server:/opt/server
   
   datastore:
-    image: mysql:8.0.32
+    image: postgres
     container_name: datastore-container
     environment:
-      POSTGRES_USER: pguser
-      POSTGRES_PASSWORD: pgsecret
+      - POSTGRES_DB=pgdb
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgsecret
     restart: always
     ports:
-      - "5433:5434"
+      - "5433:5432"
     volumes:
-      - database:/var/lib/postgresql
+      - datastore:/var/lib/postgresql/data
+
+volumes:
+  client:
+  server:
+  datastore:

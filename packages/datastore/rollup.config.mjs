@@ -29,7 +29,7 @@ export default {
     nodeResolve({
       extensions: ['.js', '.json'],
     }),
-    dotenv({ cwd: './env_files' }),
+    dotenv({ cwd: './.env_files' }),
     isProduction && terser(),
     !isProduction && run(),
   ],

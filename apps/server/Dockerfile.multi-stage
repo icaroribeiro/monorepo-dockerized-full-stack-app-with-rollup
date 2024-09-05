@@ -31,7 +31,7 @@ RUN pnpm turbo build --filter=server...
 FROM node:20-slim AS runner
 WORKDIR /app
 COPY --from=installer /app/apps/server/dist ./dist
-ENV PORT=5001
+ENV PORT=5000
 ENV NODE_ENV=production
 EXPOSE ${PORT}
-CMD ["node", "dist/bundle.cjs.js"]
+CMD ["node", "dist/bundle.esm.mjs"]

@@ -1,42 +1,14 @@
-import { DataSourceError } from '../data-source-error'
+import { Config } from 'drizzle-kit'
 
-function getDBDriver(): string {
-  return getEnvVar('DB_DRIVER')
+import { getEnvVar } from '../utils'
+
+const datastoreConfig: Config = {
+  dialect: 'postgresql',
+  schema: './src/schemas/index.ts',
+  out: './src/migrations',
+  dbCredentials: {
+    url: getEnvVar('DATABASE_URL'),
+  },
 }
 
-function getDBUser(): string {
-  return getEnvVar('DB_USER')
-}
-
-function getDBPassword(): string {
-  return getEnvVar('DB_PASSWORD')
-}
-
-function getDBHost(): string {
-  return getEnvVar('DB_HOST')
-}
-
-function getDBPort(): string {
-  return getEnvVar('DB_PORT')
-}
-
-function getDBName(): string {
-  return getEnvVar('DB_NAME')
-}
-
-function getEnvVar(name: string): string {
-  if (!process.env[name]) {
-    const message = `${name} environment variable isn't set`
-    throw new DataSourceError(500, message)
-  }
-  return process.env[name]
-}
-
-export {
-  getDBDriver,
-  getDBHost,
-  getDBName,
-  getDBPassword,
-  getDBPort,
-  getDBUser,
-}
+export default datastoreConfig satisfies Config

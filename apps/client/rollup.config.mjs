@@ -29,7 +29,7 @@ export default {
     nodeResolve({
       extensions: ['.js', '.jsx'],
     }),
-    dotenv({ cwd: './env_files' }),
+    dotenv({ cwd: './.env_files' }),
     replace({
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
