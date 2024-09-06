@@ -1,16 +1,25 @@
-import express from 'express'
+import 'reflect-metadata'
 
-const app = express()
-app.use(express.json())
+import { Application } from 'express'
+import { createServer, Server as HttpServer } from 'http'
 
-app.listen(process.env.PORT, () => {
-  console.log('Server Listening on PORT:', process.env.PORT)
-})
+import { getPort } from './config/config'
+import Server from './server'
 
-app.get('/status', (request, response) => {
-  const status = {
-    Status: `It worksss${process.env.TEST_DISPLAY}`,
+const run = (): void => {
+  try {
+    const app: Application = new Server().app
+    const server: HttpServer = createServer(app)
+    const port = parseInt(getPort())
+    server.listen(port, () => {
+      console.log('Server started successfully!')
+    })
+    server.on('close', () => {
+      console.log('Server closed successfully!')
+    })
+  } catch (err) {
+    console.error('Server start failed', err)
   }
+}
 
-  response.send(status)
-})
+run()

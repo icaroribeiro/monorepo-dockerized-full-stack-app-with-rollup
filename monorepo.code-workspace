@@ -9,10 +9,6 @@
 			"name": "server",
 		},
 		{
-			"path": "./packages/datastore",
-			"name": "datastore",
-		},
-		{
 			"path": ".",
 			"name": "ROOT",
 		},

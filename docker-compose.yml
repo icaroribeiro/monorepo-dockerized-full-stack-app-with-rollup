@@ -21,13 +21,13 @@ services:
     ports:
       - 5000:5000
     depends_on:
-      - datastore
+      - database
     volumes:
       - server:/opt/server
   
-  datastore:
+  database:
     image: postgres
-    container_name: datastore-container
+    container_name: database-container
     environment:
       - POSTGRES_DB=pgdb
       - POSTGRES_USER=pguser
@@ -36,9 +36,9 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - datastore:/var/lib/postgresql/data
+      - database:/var/lib/postgresql/data
 
 volumes:
   client:
   server:
-  datastore:
+  database:

@@ -11,15 +11,17 @@ const isProduction = process.env.NODE_ENV === 'production'
 export default {
   input: 'src/index.ts',
   output: [
-    {
-      file: 'dist/bundle.cjs.js',
-      format: 'cjs',
-      sourcemap: true,
-    },
+    // {
+    //   file: 'dist/bundle.cjs.js',
+    //   format: 'cjs',
+    //   sourcemap: true,
+    //   inlineDynamicImports: true,
+    // },
     {
       file: 'dist/bundle.esm.mjs',
       format: 'esm',
       sourcemap: true,
+      inlineDynamicImports: true,
     },
   ],
   plugins: [
@@ -29,7 +31,7 @@ export default {
     nodeResolve({
       extensions: ['.js', '.json'],
     }),
-    dotenv({ cwd: './.env_files' }),
+    dotenv(),
     isProduction && terser(),
     !isProduction && run(),
   ],

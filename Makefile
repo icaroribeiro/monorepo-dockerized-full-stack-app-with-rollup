@@ -1,10 +1,10 @@
 # Set of tasks related to the database
 # --------------------------------------------------
-startup-datastore:
-	docker-compose up --build -d datastore
+startup-database:
+	docker-compose up --build -d database
 
-shutdown-datastore:
-	docker-compose down -v --rmi local datastore
+shutdown-database:
+	docker-compose down -v --rmi local database
 
 # Set of tasks related to the monorepo applications
 # --------------------------------------------------

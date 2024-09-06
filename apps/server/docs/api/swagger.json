@@ -1,0 +1,54 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "Take-Home Assignment API",
+		"version": "1.0.0",
+		"description": "A REST API developed using Node.js, TypeScript and Postgres database\n\nSome useful links:\n- [The REST API repository](https://github.com/icaroribeiro/monorepo-dockerized-full-stack-app-with-rollup)",
+		"license": {
+			"name": "MIT"
+		},
+		"contact": {
+			"name": "Ícaro Ribeiro",
+			"email": "icaroribeiro@hotmail.com",
+			"url": "https://github.com/icaroribeiro"
+		}
+	},
+	"paths": {
+		"/users": {
+			"post": {
+				"operationId": "CreateUser",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"tags": [
+					"users"
+				],
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "http://localhost:5000",
+			"description": "Production environment"
+		}
+	],
+	"tags": [
+		{
+			"name": "users",
+			"description": "Everything about users"
+		}
+	]
+}
