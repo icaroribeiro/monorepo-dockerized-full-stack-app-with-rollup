@@ -13,7 +13,7 @@
     "test": "jest --coverage",
     "gen:swagger": "tsoa spec",
     "gen:routes": "tsoa routes",
-    "watch:dist": "npm-run-all -s gen:swagger gen:routes && rollup -c rollup.config.mjs --watch --environment NODE_ENV:development,PORT=5002",
+    "watch:dist": "npm-run-all -s gen:swagger gen:routes && rollup -c rollup.config.mjs --watch --environment NODE_ENV:development,PORT:5001",
     "pre:build": "rimraf dist && mkdir dist",
     "make:bundle": "rollup -c rollup.config.mjs --environment NODE_ENV:production",
     "build": "npm-run-all -s gen:swagger gen:routes pre:build make:bundle",

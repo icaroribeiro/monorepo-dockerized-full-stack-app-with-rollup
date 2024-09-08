@@ -3,8 +3,8 @@ import 'reflect-metadata'
 import { Application } from 'express'
 import { createServer, Server as HttpServer } from 'http'
 
-import { getPort } from './config/config'
 import Server from './server'
+import { getPort } from './server-config'
 
 const run = (): void => {
   try {

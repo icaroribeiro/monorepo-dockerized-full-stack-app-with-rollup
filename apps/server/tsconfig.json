@@ -9,7 +9,13 @@
     "moduleResolution": "Bundler",
 
     /* Linting */
-    "strict": true
+    "strict": true,
+
+    "resolveJsonModule": true,
+
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": [
     "src/**/*.ts",

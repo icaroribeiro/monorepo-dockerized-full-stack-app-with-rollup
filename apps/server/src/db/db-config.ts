@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import { Config } from 'drizzle-kit'
 
-import { getDatabaseURL } from '../config/config'
+import { getDatabaseURL } from '../server-config'
 
 const isProduction = process.env.NODE_ENV === 'production'
 

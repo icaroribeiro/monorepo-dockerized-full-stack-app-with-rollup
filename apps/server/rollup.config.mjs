@@ -11,18 +11,16 @@ const isProduction = process.env.NODE_ENV === 'production'
 export default {
   input: 'src/index.ts',
   output: [
-    // {
-    //   file: 'dist/bundle.cjs.js',
-    //   format: 'cjs',
-    //   sourcemap: true,
-    //   inlineDynamicImports: true,
-    // },
     {
-      file: 'dist/bundle.esm.mjs',
-      format: 'esm',
+      file: 'dist/bundle.cjs.js',
+      format: 'cjs',
       sourcemap: true,
-      inlineDynamicImports: true,
     },
+    // {
+    //   file: 'dist/bundle.esm.mjs',
+    //   format: 'esm',
+    //   sourcemap: true,
+    // },
   ],
   plugins: [
     typescript(),

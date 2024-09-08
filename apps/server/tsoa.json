@@ -37,7 +37,9 @@
     "entryFile": "./src/index.ts"
   },
   "routes": {
+    "iocModule": "src/container/container",
     "routesDir": "src/api/routes",
-    "iocModule": "src/utils"
-  }
+    "middleware": "express"
+  },
+  "ignore": ["**/node_modules/**"]
 }

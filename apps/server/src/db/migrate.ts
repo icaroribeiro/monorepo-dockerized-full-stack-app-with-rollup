@@ -2,7 +2,7 @@ import { drizzle } from 'drizzle-orm/postgres-js'
 import { migrate } from 'drizzle-orm/postgres-js/migrator'
 import postgres from 'postgres'
 
-import { getDatabaseURL } from '../config/config'
+import { getDatabaseURL } from '../server-config'
 
 const run = (): void => {
   try {

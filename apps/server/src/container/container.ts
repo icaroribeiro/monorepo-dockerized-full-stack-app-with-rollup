@@ -1,26 +1,32 @@
+import { IocContainer } from '@tsoa/runtime'
 import { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
 import { container } from 'tsyringe'
 
-import {
-  UserModel,
-  UserModelImpl,
-  UserService,
-  UserServiceImpl,
-} from '../api/components/user'
-import { connToBD } from '../db/db-conn'
+import { UserRepository, UserService } from '../api/components/user'
+import { connectToDatabase } from '../db/db-conn'
 
 container.register<PostgresJsDatabase<Record<string, never>>>('db', {
-  useValue: connToBD(),
+  useValue: connectToDatabase(),
 })
 
-container.register<UserModel>('userModel', {
-  useValue: new UserModelImpl(
+container.register<UserRepository>('IUserRepository', {
+  useValue: new UserRepository(
     container.resolve<PostgresJsDatabase<Record<string, never>>>('db'),
   ),
 })
 
-container.register<UserService>('userService', {
-  useValue: new UserServiceImpl(container.resolve<UserModel>('userModel')),
+container.register<UserService>('IUserService', {
+  useValue: new UserService(
+    container.resolve<UserRepository>('IUserRepository'),
+  ),
 })
+
+export const iocContainer: IocContainer = {
+  get: <T>(controller: { prototype: T }): T => {
+    return container.resolve<T>(controller as never)
+  },
+}
+
+export default iocContainer
 
 export { container }
