@@ -6,7 +6,35 @@
 		"parameters": {},
 		"requestBodies": {},
 		"responses": {},
-		"schemas": {},
+		"schemas": {
+			"HealthCheckResponse": {
+				"properties": {
+					"health": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"health"
+				],
+				"type": "object"
+			},
+			"ErrorResponse": {
+				"properties": {
+					"details": {},
+					"message": {
+						"type": "string"
+					},
+					"status": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"message",
+					"status"
+				],
+				"type": "object"
+			}
+		},
 		"securitySchemes": {}
 	},
 	"info": {
@@ -33,6 +61,54 @@
 				},
 				"tags": [
 					"users"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/health": {
+			"get": {
+				"operationId": "GetHealth",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HealthCheckResponse"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"health": true
+										}
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ErrorResponse"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"status": "error",
+											"message": "Internal Server Error"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "API endpoint used to verify if the service has started up correctly and is ready to accept requests",
+				"tags": [
+					"health-check"
 				],
 				"security": [],
 				"parameters": []

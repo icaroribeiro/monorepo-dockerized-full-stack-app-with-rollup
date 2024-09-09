@@ -4,11 +4,14 @@ import nodeResolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import terser from '@rollup/plugin-terser'
 import typescript from '@rollup/plugin-typescript'
-import dotenv from 'rollup-plugin-dotenv'
 import livereload from 'rollup-plugin-livereload'
 import serve from 'rollup-plugin-serve'
 
 const isProduction = process.env.NODE_ENV === 'production'
+
+dotenv.config({
+  path: isProduction ? './.env.production' : './.env.development',
+})
 
 export default {
   input: 'src/index.tsx',
@@ -29,7 +32,6 @@ export default {
     nodeResolve({
       extensions: ['.js', '.jsx'],
     }),
-    dotenv(),
     replace({
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),

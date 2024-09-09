@@ -1,6 +1,5 @@
 import { InferInsertModel, InferSelectModel, sql } from 'drizzle-orm'
 import { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
-import { injectable } from 'tsyringe'
 
 import * as schemas from '../../../db/schemas'
 

@@ -18,7 +18,7 @@ const run = (): void => {
       console.log('Server closed successfully!')
     })
   } catch (err) {
-    console.error('Server start failed', err)
+    console.error('Server start failed!', err)
   }
 }
 
