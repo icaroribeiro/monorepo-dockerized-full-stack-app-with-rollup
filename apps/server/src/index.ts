@@ -2,9 +2,13 @@ import 'reflect-metadata'
 
 import { Application } from 'express'
 import { createServer, Server as HttpServer } from 'http'
+import { fileURLToPath } from 'url'
 
 import Server from './server'
 import { getPort } from './server-config'
+
+const __filename = fileURLToPath(import.meta.url)
+console.log(__filename)
 
 const run = (): void => {
   try {

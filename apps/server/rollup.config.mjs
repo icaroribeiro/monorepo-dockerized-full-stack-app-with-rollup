@@ -21,11 +21,6 @@ export default {
       format: 'cjs',
       sourcemap: true,
     },
-    // {
-    //   file: 'dist/bundle.esm.mjs',
-    //   format: 'esm',
-    //   sourcemap: true,
-    // },
   ],
   plugins: [
     typescript(),
@@ -34,18 +29,20 @@ export default {
     nodeResolve({
       extensions: ['.js', '.json'],
     }),
-    // copy({
-    //   targets: [
-    //     {
-    //       // src: './node_modules/swagger-ui-dist/swagger-ui-bundle.js',
-    //       // dest: 'dist/swagger-ui-bundle.js',
-    //       // src: './node_modules/swagger-ui-dist/swagger-ui-standalone-preset.js',
-    //       // dest: 'dist/swagger-ui-standalone-preset.js',
-    //       // src: './node_modules/swagger-ui-dist/swagger-ui.css',
-    //       // dest: 'dist/swagger-ui.css',
-    //     },
-    //   ],
-    // }),
+    copy({
+      targets: [
+        {
+          src: [
+            './node_modules/swagger-ui-dist/swagger-ui.css',
+            './node_modules/swagger-ui-dist/favicon-16x16.png',
+            './node_modules/swagger-ui-dist/favicon-32x32.png',
+            './node_modules/swagger-ui-dist/swagger-ui-bundle.js',
+            './node_modules/swagger-ui-dist/swagger-ui-standalone-preset.js',
+          ],
+          dest: 'dist',
+        },
+      ],
+    }),
     isProduction && terser(),
     !isProduction && run(),
   ],

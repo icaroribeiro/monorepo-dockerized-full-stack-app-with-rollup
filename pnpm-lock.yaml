@@ -130,8 +130,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
       swagger-ui-express:
-        specifier: 5.0.0
-        version: 5.0.0(express@4.19.2)
+        specifier: ^5.0.1
+        version: 5.0.1(express@4.19.2)
       tsoa:
         specifier: ^6.4.0
         version: 6.4.0
@@ -154,9 +154,6 @@ importers:
       '@rollup/plugin-node-resolve':
         specifier: ^15.2.3
         version: 15.2.3(rollup@4.21.0)
-      '@rollup/plugin-replace':
-        specifier: ^5.0.7
-        version: 5.0.7(rollup@4.21.0)
       '@rollup/plugin-run':
         specifier: ^3.1.0
         version: 3.1.0(rollup@4.21.0)
@@ -178,9 +175,6 @@ importers:
       '@types/node':
         specifier: ^22.5.2
         version: 22.5.2
-      '@types/swagger-ui-dist':
-        specifier: ^3.30.5
-        version: 3.30.5
       '@types/swagger-ui-express':
         specifier: ^4.1.6
         version: 4.1.6
@@ -217,9 +211,6 @@ importers:
       rollup-plugin-copy:
         specifier: ^3.5.0
         version: 3.5.0
-      rollup-plugin-dotenv:
-        specifier: ^0.5.1
-        version: 0.5.1(rollup@4.21.0)
       swagger-ui-dist:
         specifier: ^5.17.14
         version: 5.17.14
@@ -1286,9 +1277,6 @@ packages:
 
   '@types/stack-utils@2.0.3':
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
-
-  '@types/swagger-ui-dist@3.30.5':
-    resolution: {integrity: sha512-SrXhD9L8qeIxJzN+o1kmf3wXeVf/+Km3jIdRM1+Yq3I5b/dlF5TcGr5WCVM7I/cBYpgf43/gCPIucQ13AhICiw==}
 
   '@types/swagger-ui-express@4.1.6':
     resolution: {integrity: sha512-UVSiGYXa5IzdJJG3hrc86e8KdZWLYxyEsVoUI4iPXc7CO4VZ3AfNP8d/8+hrDRIqz+HAaSMtZSqAsF3Nq2X/Dg==}
@@ -3095,12 +3083,6 @@ packages:
     resolution: {integrity: sha512-wI8D5dvYovRMx/YYKtUNt3Yxaw4ORC9xo6Gt9t22kveWz1enG9QrhVlagzwrxSC455xD1dHMKhIJkbsQ7d48BA==}
     engines: {node: '>=8.3'}
 
-  rollup-plugin-dotenv@0.5.1:
-    resolution: {integrity: sha512-ARUPDmeKAw3niZ2Ajv0qKNRryIWFMW796oJSS1hNdop3HF63Vljio/QRmG6ob0aQzzVUrFq6vW1p4jOE6xDQrQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      rollup: ^1.20.0 || ^2.0.0 || ^3.0.0 || ^4.0.0
-
   rollup-plugin-livereload@2.0.5:
     resolution: {integrity: sha512-vqQZ/UQowTW7VoiKEM5ouNW90wE5/GZLfdWuR0ELxyKOJUIaj+uismPZZaICU4DnWPVjnpCDDxEqwU7pcKY/PA==}
     engines: {node: '>=8.3'}
@@ -3315,8 +3297,8 @@ packages:
   swagger-ui-dist@5.17.14:
     resolution: {integrity: sha512-CVbSfaLpstV65OnSjbXfVd6Sta3q3F7Cj/yYuvHMp1P90LztOLs6PfUnKEVAeiIVQt9u2SaPwv0LiH/OyMjHRw==}
 
-  swagger-ui-express@5.0.0:
-    resolution: {integrity: sha512-tsU9tODVvhyfkNSvf03E6FAk+z+5cU3lXAzMy6Pv4av2Gt2xA0++fogwC4qo19XuFf6hdxevPuVCSKFuMHJhFA==}
+  swagger-ui-express@5.0.1:
+    resolution: {integrity: sha512-SrNU3RiBGTLLmFU8GIJdOdanJTl4TOmT27tt3bWWHppqYmAZ6IDuEuBvMU6nZq0zLEe6b/1rACXCgLZqO6ZfrA==}
     engines: {node: '>= v0.10.32'}
     peerDependencies:
       express: '>=4.0.0 || >=5.0.0-beta'
@@ -4793,8 +4775,6 @@ snapshots:
       '@types/send': 0.17.4
 
   '@types/stack-utils@2.0.3': {}
-
-  '@types/swagger-ui-dist@3.30.5': {}
 
   '@types/swagger-ui-express@4.1.6':
     dependencies:
@@ -6870,12 +6850,6 @@ snapshots:
       globby: 10.0.1
       is-plain-object: 3.0.1
 
-  rollup-plugin-dotenv@0.5.1(rollup@4.21.0):
-    dependencies:
-      '@rollup/plugin-replace': 5.0.7(rollup@4.21.0)
-      dotenv: 16.4.5
-      rollup: 4.21.0
-
   rollup-plugin-livereload@2.0.5:
     dependencies:
       livereload: 0.9.3
@@ -7133,7 +7107,7 @@ snapshots:
 
   swagger-ui-dist@5.17.14: {}
 
-  swagger-ui-express@5.0.0(express@4.19.2):
+  swagger-ui-express@5.0.1(express@4.19.2):
     dependencies:
       express: 4.19.2
       swagger-ui-dist: 5.17.14
