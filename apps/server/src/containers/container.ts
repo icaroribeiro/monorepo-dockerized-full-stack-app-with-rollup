@@ -1,4 +1,3 @@
-import { IocContainer } from '@tsoa/runtime'
 import { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
 import { container } from 'tsyringe'
 
@@ -27,13 +26,5 @@ container.register<UserService>('IUserService', {
     container.resolve<UserRepository>('IUserRepository'),
   ),
 })
-
-export const iocContainer: IocContainer = {
-  get: <T>(controller: { prototype: T }): T => {
-    return container.resolve<T>(controller as never)
-  },
-}
-
-export default iocContainer
 
 export { container }

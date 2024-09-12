@@ -1,15 +1,15 @@
-import { InferInsertModel, InferSelectModel, sql } from 'drizzle-orm'
+// import { InferInsertModel, InferSelectModel, sql } from 'drizzle-orm'
 import { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
 
-import * as schemas from '../../../db/schemas'
+// import * as schemas from '../../../db/schemas'
 
-type NewUser = InferInsertModel<typeof schemas.user>
+// type NewUser = InferInsertModel<typeof schemas.user>
 
-type InsertedUser = InferSelectModel<typeof schemas.user>
+// type InsertedUser = InferSelectModel<typeof schemas.user>
 
 interface IUserRepository {
   // save(newUser: NewUser): Promise<InsertedUser>
-  save2(newUser: NewUser): Promise<string>
+  save2(): Promise<string>
 }
 
 class UserRepository implements IUserRepository {
@@ -23,14 +23,14 @@ class UserRepository implements IUserRepository {
   //   return result[0]
   // }
 
-  async save2(newUser: NewUser): Promise<string> {
-    try {
-      this.db.execute(sql`SELECT 1`)
-    } catch (error) {
-      console.log(error)
-    }
-    return '67890'
+  async save2(): Promise<string> {
+    // try {
+    //   this.db.execute(sql`SELECT 1`)
+    // } catch (error) {
+    //   console.log(error)
+    // }
+    return '67sss890'
   }
 }
 
-export { InsertedUser, IUserRepository, NewUser, UserRepository }
+export { IUserRepository, UserRepository }

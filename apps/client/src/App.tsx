@@ -2,7 +2,7 @@ function App() {
   return (
     <>
       <div>
-        <h1>{process.env.TEST_DISPLAY}</h1>
+        <h1>{process.env.DISPLAY}kkk222</h1>
       </div>
     </>
   )

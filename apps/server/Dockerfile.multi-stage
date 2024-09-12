@@ -25,13 +25,18 @@ COPY --from=builder /app/out/json/ .
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 COPY --from=builder /app/out/full/ .
 RUN pnpm turbo build --filter=server...
+RUN pnpm turbo migrate
 
 # Stage 4: Configure the runner image
 # --------------------------------------------------
 FROM node:20-slim AS runner
+RUN npm install vite-node --global
 WORKDIR /app
 COPY --from=installer /app/apps/server/dist ./dist
+# COPY --from=installer /app/apps/server/.env.production .
 ENV PORT=5000
 ENV NODE_ENV=production
 EXPOSE ${PORT}
-CMD ["node", "dist/bundle.esm.mjs"]
+CMD ["sh", "-c", "vite-node ./dist/index.js"]
+# CMD ["sh", "-c", "vite-node --mode production ./dist/index.js"]
+# CMD ["sh", "-c", "cat dist/index.js | node --input-type=module"]

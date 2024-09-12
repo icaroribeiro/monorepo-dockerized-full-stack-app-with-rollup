@@ -1,9 +1,13 @@
+import { HealthCheck } from './healthcheck.model'
+
 type HealthCheckResponse = {
-  health: boolean
+  healthy: boolean
 }
 
-const MapHealthCheckResponse = (ok: boolean): HealthCheckResponse => ({
-  health: ok,
+const MapHealthCheckResponse = (
+  healthCheck: HealthCheck,
+): HealthCheckResponse => ({
+  healthy: healthCheck.healthy,
 })
 
 export { HealthCheckResponse, MapHealthCheckResponse }

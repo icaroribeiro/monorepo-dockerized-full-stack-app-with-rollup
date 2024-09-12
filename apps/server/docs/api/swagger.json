@@ -9,12 +9,12 @@
 		"schemas": {
 			"HealthCheckResponse": {
 				"properties": {
-					"health": {
+					"healthy": {
 						"type": "boolean"
 					}
 				},
 				"required": [
-					"health"
+					"healthy"
 				],
 				"type": "object"
 			},
@@ -80,7 +80,7 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"health": true
+											"healthy": true
 										}
 									}
 								}
@@ -106,7 +106,7 @@
 						}
 					}
 				},
-				"description": "API endpoint used to verify if the service has started up correctly and is ready to accept requests",
+				"description": "API endpoint used to verify if the serviççce has started up correctly and is ready to accept requests",
 				"tags": [
 					"health-check"
 				],

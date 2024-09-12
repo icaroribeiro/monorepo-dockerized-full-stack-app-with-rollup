@@ -6,7 +6,7 @@ import { TsoaRoute, fetchMiddlewares, ExpressTemplateService } from '@tsoa/runti
 import { UserController } from './../components/user/user.controller';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { HealthCheckController } from './../components/health-check/health-check.controller';
-import { iocContainer } from './../../container/container';
+import { iocContainer } from './../../containers';
 import type { IocContainer, IocContainerFactory } from '@tsoa/runtime';
 import type { Request as ExRequest, Response as ExResponse, RequestHandler, Router } from 'express';
 
@@ -17,7 +17,7 @@ import type { Request as ExRequest, Response as ExResponse, RequestHandler, Rout
 const models: TsoaRoute.Models = {
     "HealthCheckResponse": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"health":{"dataType":"boolean","required":true}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"healthy":{"dataType":"boolean","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "ErrorResponse": {

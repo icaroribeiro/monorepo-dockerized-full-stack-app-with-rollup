@@ -8,12 +8,7 @@ import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
   {
-    ignores: [
-      'prettier.config.mjs',
-      'jest.config.mjs',
-      'rollup.config.mjs',
-      'dist',
-    ],
+    ignores: ['dist'],
   },
   {
     extends: [

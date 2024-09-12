@@ -1,10 +1,7 @@
-import { inject, injectable } from 'tsyringe'
-
-import { InsertedUser, IUserRepository, NewUser } from './user.repository'
+import { IUserRepository } from './user.repository'
 
 interface IUserService {
-  // createUser(newUser: NewUser): Promise<InsertedUser>
-  createUser2(newUser: NewUser): Promise<void>
+  createUser2(): Promise<void>
 }
 
 class UserService implements IUserService {
@@ -14,9 +11,9 @@ class UserService implements IUserService {
   //   return await this.userModel.save(newUser)
   // }
 
-  async createUser2(newUser: NewUser): Promise<void> {
-    const result = await this.userRepository.save2(newUser)
-    console.log(result)
+  async createUser2(): Promise<void> {
+    // const result = await this.userRepository.save2(newUser)
+    console.log('result')
     return
   }
 }

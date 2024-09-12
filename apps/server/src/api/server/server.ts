@@ -1,8 +1,9 @@
 import express, { Application, json, Request, Response } from 'express'
 import swaggerUi from 'swagger-ui-express'
+
 // import { errorMiddleware } from './middlewares'
-import swaggerDocument from '../docs/api/swagger.json'
-import { RegisterRoutes } from './api/routes/routes'
+import swaggerDocument from '../../../docs/api/swagger.json'
+import { RegisterRoutes } from '../routes/routes'
 
 class Server {
   private readonly _app: Application = express()

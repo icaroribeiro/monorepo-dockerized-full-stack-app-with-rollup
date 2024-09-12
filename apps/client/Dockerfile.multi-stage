@@ -35,4 +35,5 @@ COPY --from=installer /app/apps/client/dist ./dist
 ENV PORT=3000
 ENV NODE_ENV=production
 EXPOSE ${PORT}
-CMD ["sh", "-c", "serve -p ${PORT} dist"]
+CMD ["sh", "-c", "serve -s dist"]
+# CMD ["sh", "-c", "serve -p ${PORT} dist"]

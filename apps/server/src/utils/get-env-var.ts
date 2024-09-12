@@ -1,6 +1,6 @@
 import { INTERNAL_SERVER_ERROR } from 'http-status'
 
-import { ServerError } from '../server-error'
+import { ServerError } from '../api/server/server-error'
 
 function getEnvVar(name: string): string {
   if (!process.env[name]) {
