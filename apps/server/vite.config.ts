@@ -12,10 +12,7 @@ export default defineConfig(({ command, mode }) => {
       target: 'node20',
       outDir: 'dist',
       rollupOptions: {
-        input: {
-          // index: 'src/index.ts',
-          migrate: 'db/migrate.ts',
-        },
+        input: 'src/index.ts',
       },
     },
     ssr: {
@@ -25,10 +22,6 @@ export default defineConfig(({ command, mode }) => {
     plugins: [
       viteStaticCopy({
         targets: [
-          {
-            src: './db/migrations',
-            dest: '.',
-          },
           {
             src: './node_modules/swagger-ui-dist/swagger-ui.css',
             dest: '.',

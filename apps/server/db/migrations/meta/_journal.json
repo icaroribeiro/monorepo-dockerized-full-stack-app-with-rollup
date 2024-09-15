@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1726344250600,
-      "tag": "0000_add_user_table",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1726346789003,
-      "tag": "0001_test_cpf",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1726359522823,
-      "tag": "0002_wide_moon_knight",
+      "when": 1726415238024,
+      "tag": "0000_dazzling_doctor_spectrum",
       "breakpoints": true
     }
   ]

@@ -5,9 +5,9 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
     
-# Stage 2: Configure the image for build
+# Stage 2: Configure the image for prune
 # --------------------------------------------------
-FROM base AS builder
+FROM base AS pruner
 RUN apk update
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -15,27 +15,92 @@ COPY . .
 RUN pnpm install turbo --global
 RUN turbo prune server --docker
 
-# Stage 3: Configure the installer image
+# Stage 3: Configure the prod-deps image
 # --------------------------------------------------
-FROM base AS installer
+FROM base AS prod-deps
 RUN apk update
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY --from=builder /app/out/json/ .
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-COPY --from=builder /app/out/full/ .
-RUN pnpm turbo build --filter=server...
+COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=pruner /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
+COPY --from=pruner /app/out/json/ .
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+RUN pnpm deploy --filter=server --prod /prod/server
 
-# Stage 4: Configure the runner image
+# Stage 4: Configure the builder image
+# --------------------------------------------------
+FROM base AS builder
+RUN apk update
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=pruner /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
+COPY --from=pruner /app/out/full/ .
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm turbo build --filter=server
+
+# Stage 6: Configure the migration image
+# --------------------------------------------------
+# FROM node:20-slim AS migration-runner
+# RUN npm install tsx --global
+# WORKDIR /app
+# COPY --from=prod-deps /app/node_modules ./node_modules
+# COPY --from=installer /app/apps/server/node_modules ./node_modules
+# COPY --from=installer /app/apps/server/.env.production ./.env.production
+# COPY --from=installer /app/apps/server/db/migrations ./db/migrations
+# COPY --from=installer /app/apps/server/db/migrate.ts ./db/migrate.ts
+# CMD ["sh", "-c", "tsx ./db/migrate.ts"]
+
+# Stage 6: Configure the runner image
 # --------------------------------------------------
 FROM node:20-slim AS runner
+# RUN npm install tsx --global
+# RUN npm install dotenv --global
 RUN npm install vite-node --global
 WORKDIR /app
-COPY --from=installer /app/apps/server/dist ./dist
-ENV MIGRATE=true
-CMD ["sh", "-c", "vite-node ./dist/index.js"]
-ENV MIGRATE=false
+# RUN --mount=type=bind,from=installer,source=/pnpm/store,target=/kkk
+# COPY --from=installer /app/apps/server/node_modules ./node_modules
+COPY --from=prod-deps /prod/server/node_modules ./node_modules
+# COPY --from=installer /app/apps/server/tsconfig.json ./tsconfig.json
+# COPY --from=installer /app/apps/server/.env.production ./.env.production
+# COPY --from=installer /app/apps/server/db/migrations ./db/migrations
+# COPY --from=installer /app/apps/server/db/migrate.ts ./db/migrate.ts
+COPY --from=builder /app/apps/server/dist ./dist
+# CMD ["sh", "-c", "tsx ./db/migrate.ts"]
 ENV PORT=5000
 ENV NODE_ENV=production
 EXPOSE ${PORT}
 CMD ["sh", "-c", "vite-node ./dist/index.js"]
+
+# FROM node:20-slim AS runner
+# RUN npm install vite-node --global
+# WORKDIR /app
+# COPY --from=installer /app/apps/server/dist ./dist
+# ENV PORT=5000
+# ENV NODE_ENV=production
+# EXPOSE ${PORT}
+# CMD ["sh", "-c", "vite-node ./dist/index.js"]
+
+
+
+
+
+
+
+
+# FROM node:20-slim AS runner
+# RUN npm install tsx --global
+# RUN npm install dotenv --global
+# RUN npm install vite-node --global
+# WORKDIR /app
+# COPY --from=installer /app/apps/server/node_modules ./node_modules
+# COPY --from=installer /app/apps/server/package.json ./package.json
+# COPY --from=installer /app/apps/server/tsconfig.json ./tsconfig.json
+# COPY --from=installer /app/apps/server/.env.production ./.env.production
+# COPY --from=installer /app/apps/server/db/migrations ./db/migrations
+# COPY --from=installer /app/apps/server/db/migrate.ts ./db/migrate.ts
+# COPY --from=installer /app/apps/server/dist ./dist
+# ENV PORT=5000
+# ENV NODE_ENV=production
+# EXPOSE ${PORT}
+# CMD ["sh", "-c", "vite-node ./dist/index.js"]

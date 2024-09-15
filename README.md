@@ -27,3 +27,9 @@ shutdown-adminer:
 
 volumes:
   adminer:
+
+
+
+docker exec -it server-container /bin/sh
+
+docker run -it --rm monorepo-dockerized-full-stack-app-with-vite-server npm list

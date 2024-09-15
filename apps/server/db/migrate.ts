@@ -1,14 +1,20 @@
+import dotenv from 'dotenv'
 import { drizzle } from 'drizzle-orm/postgres-js'
 import { migrate } from 'drizzle-orm/postgres-js/migrator'
 import postgres from 'postgres'
 
-import { getDatabaseURL } from '../src/app/config/config'
+dotenv.config({
+  path: './.env.production',
+})
 
 const run = async (): Promise<void> => {
   try {
-    const migrationClient = postgres(getDatabaseURL(), { max: 1 })
+    const databaseURL = process.env['DATABASE_URL']
+      ? process.env.DATABASE_URL
+      : ''
+    const migrationClient = postgres(databaseURL, { max: 1 })
     await migrate(drizzle(migrationClient), {
-      migrationsFolder: './db/migrations',
+      migrationsFolder: import.meta.dirname + '/migrations',
     })
     console.log('Migrations completed successfully!')
     await migrationClient.end()

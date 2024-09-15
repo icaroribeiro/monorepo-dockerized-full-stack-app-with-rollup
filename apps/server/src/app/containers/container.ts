@@ -3,7 +3,7 @@ import { container } from 'tsyringe'
 
 import { HealthCheckService } from '../api/components/health-check'
 import { UserRepository, UserService } from '../api/components/user'
-import { connectToDatabase } from '../db/db-conn'
+import { connectToDatabase } from '../db/db'
 
 container.register<PostgresJsDatabase<Record<string, never>>>('db', {
   useValue: connectToDatabase(),
