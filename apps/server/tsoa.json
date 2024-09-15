@@ -1,9 +1,9 @@
 {
   "entryFile": "src/index.ts",
   "noImplicitAdditionalProperties": "throw-on-extras",
-  "controllerPathGlobs": ["src/**/*controller.ts"],
+  "controllerPathGlobs": ["src/app/api/components/**/*controller.ts"],
   "spec": {
-    "outputDirectory": "docs/api",
+    "outputDirectory": "api",
     "specVersion": 3,
     "basePath": "",
     "name": "Take-Home Assignment API",
@@ -37,8 +37,8 @@
     "entryFile": "./src/index.ts"
   },
   "routes": {
-    "iocModule": "src/containers",
-    "routesDir": "src/api/routes",
+    "iocModule": "src/app/containers",
+    "routesDir": "src/app/api/routes",
     "middleware": "express"
   },
   "ignore": ["**/node_modules/**"]

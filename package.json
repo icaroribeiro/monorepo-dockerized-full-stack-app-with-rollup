@@ -9,12 +9,13 @@
 		"apps/*",
 		"packages/*"
 	],
-	"packageManager": "pnpm@9.8.0",
+	"packageManager": "pnpm@9.10.0",
 	"scripts": {
 		"lint": "turbo run lint",
-		"fix:lint": "turbo run fix:lint",
+		"lint:fix": "turbo run lint:fix",
 		"format": "turbo run format",
 		"test": "turbo run test",
+		"run:migration": "turbo run run:migration",
 		"build": "turbo run build"
 	},
 	"devDependencies": {

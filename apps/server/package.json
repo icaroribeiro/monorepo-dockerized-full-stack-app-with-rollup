@@ -9,19 +9,18 @@
   "type": "module",
   "scripts": {
     "lint": "eslint ./src",
-    "fix:lint": "eslint --fix ./src",
+    "lint:fix": "eslint --fix ./src",
     "format": "prettier --write ./src",
     "test": "vitest --run --coverage",
     "test:watch": "vitest",
-    "gen:swagger": "tsoa spec",
-    "gen:routes": "tsoa routes",
-    "gen:migration": "dotenv -v NODE_ENV=development -- drizzle-kit generate --config ./src/db/db-config.ts",
-    "run:migration:dev": "dotenv -v NODE_ENV=development -- drizzle-kit migrate --config ./src/db/db-config.ts",
-    "run:migration": "dotenv -v NODE_ENV=production -- drizzle-kit migrate --config ./src/db/db-config.ts",
-    "start:dev": "pnpm gen:swagger && pnpm gen:routes && pnpm run:migration:dev && pnpm vite-node --watch --mode development ./src/index.ts",
+    "swagger:generate": "tsoa spec",
+    "routes:generate": "tsoa routes",
+    "migr:generate": "dotenv -v NODE_ENV=development -- drizzle-kit generate --config ./db/db-config.ts",
+    "db:migrate": "dotenv -v NODE_ENV=development -- drizzle-kit migrate --config ./db/db-config.ts",
+    "start:dev": "pnpm swagger:generate && pnpm routes:generate && pnpm vite-node --watch --mode development ./src/index.ts",
     "pre:build": "rimraf dist && mkdir dist",
     "make:bundle": "tsc -b && vite build --mode production",
-    "build": "pnpm gen:swagger && pnpm gen:routes && pnpm pre:build && pnpm make:bundle"
+    "build": "pnpm swagger:generate && pnpm routes:generate && pnpm pre:build && pnpm make:bundle"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",

@@ -1,6 +1,6 @@
 {
-  "id": "e1a745d6-2715-4460-8da4-aa6123842205",
-  "prevId": "b7422cd8-ced4-428f-929d-82d7ec033655",
+  "id": "d8977af5-1847-4048-9de9-fb828796f11f",
+  "prevId": "ed52e43f-df52-4367-a54f-f8588aadef4f",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -20,8 +20,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "cpf": {
-          "name": "cpf",
+        "tcpf": {
+          "name": "tcpf",
           "type": "text",
           "primaryKey": false,
           "notNull": false

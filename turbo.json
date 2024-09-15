@@ -1,18 +1,30 @@
 {
 	"$schema": "https://turborepo.org/schema.json",
 	"tasks": {
-		"lint": {},
-		"fix:lint": {},
-		"format": {},
+		"lint": {
+			"dependsOn": ["^@monorepo/tools#build"],
+			"cache": false
+		},
+		"lint:fix": {
+			"dependsOn": ["^@monorepo/tools#build"],
+			"cache": false
+		},
+		"format": {
+			"dependsOn": ["^@monorepo/tools#build"],
+			"cache": false
+		},
 		"test": {
+			"dependsOn": ["^@monorepo/tools#build"],
+			"cache": false,
 			"outputs": ["coverage/**"]
+		},
+		"run:migration": {
+			"cache": false,
+			"outputs": ["db/migrations/**"]
 		},
 		"build": {
 			"dependsOn": ["^build"],
 			"outputs": ["dist/**"]
-		},
-		"migrate": {
-			"outputs": ["db/migrations/**"]
 		}
 	}
 }

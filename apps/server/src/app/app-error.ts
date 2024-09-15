@@ -1,4 +1,4 @@
-class ServerError extends Error {
+class AppError extends Error {
   status: string
   constructor(
     public message: string,
@@ -10,4 +10,4 @@ class ServerError extends Error {
   }
 }
 
-export { ServerError }
+export { AppError }
