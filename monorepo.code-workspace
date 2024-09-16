@@ -2,19 +2,20 @@
 	"folders": [
 		{
 			"path": "./apps/client",
-			"name": "client"
+			"name": "client",
 		},
 		{
 			"path": "./apps/server",
-			"name": "server"
+			"name": "server",
 		},
 		{
 			"path": "./packages/tools",
-			"name": "tools"
+			"name": "tools",
 		},
 		{
 			"path": ".",
-			"name": "ROOT"
-		}
-	]
+			"name": "ROOT",
+		},
+	],
+	"settings": {},
 }

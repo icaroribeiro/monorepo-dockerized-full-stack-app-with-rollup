@@ -18,10 +18,6 @@
 			"cache": false,
 			"outputs": ["coverage/**"]
 		},
-		"run:migration": {
-			"cache": false,
-			"outputs": ["db/migrations/**"]
-		},
 		"build": {
 			"dependsOn": ["^build"],
 			"outputs": ["dist/**"]

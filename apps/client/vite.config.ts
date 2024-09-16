@@ -18,5 +18,11 @@ export default defineConfig(({ mode }) => {
         DISPLAY: env.VITE_DISPLAY,
       },
     },
+    test: {
+      include: ['src/**/*.test.{ts,tsx}'],
+      coverage: {
+        reporter: ['lcov', 'text'],
+      },
+    },
   }
 })

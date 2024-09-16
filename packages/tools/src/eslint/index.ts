@@ -1,10 +1,13 @@
-import type { ConfigWithExtends } from "typescript-eslint";
 import eslint from "@eslint/js";
 import eslintConfigPrettier from "eslint-config-prettier";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
+import globals from "globals";
+import type { ConfigWithExtends } from "typescript-eslint";
 import tseslint from "typescript-eslint";
 
-const ignore: ConfigWithExtends = {
+const ignoreConfig: ConfigWithExtends = {
 	name: "ignore",
 	ignores: [
 		"node_modules",
@@ -24,8 +27,9 @@ const tsConfig = ({ tsconfigRootDir }: TSConfigArgs): ConfigWithExtends => ({
 	plugins: {
 		"@typescript-eslint": tseslint.plugin,
 	},
+	files: ["**/*.ts"],
 	languageOptions: {
-		parser: tseslint.parser,
+		// parser: tseslint.parser,
 		parserOptions: {
 			// projectService: true,
 			project: "./tsconfig.json",
@@ -33,6 +37,49 @@ const tsConfig = ({ tsconfigRootDir }: TSConfigArgs): ConfigWithExtends => ({
 		},
 	},
 });
+
+const tsBrowserConfig = ({
+	tsconfigRootDir,
+}: TSConfigArgs): ConfigWithExtends => ({
+	name: "typescript-linter",
+	plugins: {
+		"@typescript-eslint": tseslint.plugin,
+	},
+	files: ["**/*.{ts,tsx}"],
+	languageOptions: {
+		ecmaVersion: 2020,
+		globals: globals.browser,
+		// parser: tseslint.parser,
+		parserOptions: {
+			// projectService: true,
+			project: "./tsconfig.json",
+			tsconfigRootDir: tsconfigRootDir,
+		},
+	},
+});
+
+const reactHookConfig: ConfigWithExtends = {
+	name: "react-hook",
+	plugins: {
+		"react-hooks": reactHooks,
+	},
+	rules: {
+		...reactHooks.configs.recommended.rules,
+	},
+};
+
+const reactRefreshConfig: ConfigWithExtends = {
+	name: "react-refresh",
+	plugins: {
+		"react-refresh": reactRefresh,
+	},
+	rules: {
+		"react-refresh/only-export-components": [
+			"warn",
+			{ allowConstantExport: true },
+		],
+	},
+};
 
 const simpleImportSortConfig: ConfigWithExtends = {
 	name: "simple-import-sort",
@@ -51,9 +98,9 @@ const simpleImportSortConfig: ConfigWithExtends = {
 // 	},
 // };
 
-const getConfig = (tsConfigArgs: TSConfigArgs) =>
+const getServerConfig = (tsConfigArgs: TSConfigArgs) =>
 	tseslint.config(
-		ignore,
+		ignoreConfig,
 		tsConfig(tsConfigArgs),
 		eslint.configs.recommended,
 		...tseslint.configs.recommended,
@@ -62,4 +109,17 @@ const getConfig = (tsConfigArgs: TSConfigArgs) =>
 		eslintConfigPrettier
 	);
 
-export { getConfig };
+const getClientConfig = (tsConfigArgs: TSConfigArgs) =>
+	tseslint.config(
+		ignoreConfig,
+		tsBrowserConfig(tsConfigArgs),
+		eslint.configs.recommended,
+		...tseslint.configs.recommended,
+		reactHookConfig,
+		reactRefreshConfig,
+		simpleImportSortConfig,
+		// consistentTypesConfig,
+		eslintConfigPrettier
+	);
+
+export { getClientConfig, getServerConfig };

@@ -1,6 +1,6 @@
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({}) => {
 	return {
 		build: {
 			ssr: true,
@@ -10,9 +10,11 @@ export default defineConfig(({ command, mode }) => {
 			rollupOptions: {
 				input: {
 					eslint: "src/eslint/index.ts",
-					vite: "src/vite/index.ts",
 				},
 			},
+		},
+		ssr: {
+			target: "node",
 		},
 	};
 });

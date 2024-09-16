@@ -5,9 +5,9 @@ ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
     
-# Stage 2: Configure the image for build
+# Stage 2: Configure the pruner image
 # --------------------------------------------------
-FROM base AS builder
+FROM base AS pruner
 RUN apk update
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -21,10 +21,11 @@ FROM base AS installer
 RUN apk update
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY --from=builder /app/out/json/ .
+COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=pruner /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
+COPY --from=pruner /app/out/full/ .
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-COPY --from=builder /app/out/full/ .
-RUN pnpm turbo build --filter=client...
+RUN pnpm turbo build --filter=client
 
 # Stage 4: Configure the runner image
 # --------------------------------------------------

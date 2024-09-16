@@ -1,16 +1,19 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@monorepo/tools/tsconfig/base.json",
+
   "compilerOptions": {
     "target": "es2022",
     "lib": ["es2023"],
-    "module": "ESNext",
-    "skipLibCheck": true,
+    // "module": "ESNext",
+    // "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "Bundler",
-    "noEmit": true,
+    // "moduleResolution": "Bundler",
+    // "noEmit": true,
 
     /* Linting */
-    "strict": true,
+    // "strict": true,
 
     /* Experimental Options */
     "experimentalDecorators": true,

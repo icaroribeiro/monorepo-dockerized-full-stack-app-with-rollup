@@ -51,5 +51,11 @@ export default defineConfig(({ command, mode }) => {
         DATABASE_URL: env.VITE_DATABASE_URL,
       },
     },
+    test: {
+      include: ['src/**/*.test.ts'],
+      coverage: {
+        reporter: ['lcov', 'text'],
+      },
+    },
   }
 })
