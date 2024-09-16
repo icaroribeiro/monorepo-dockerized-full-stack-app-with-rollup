@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
+import checker from 'vite-plugin-checker'
 
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd())
@@ -20,6 +21,13 @@ export default defineConfig(({ command, mode }) => {
       noExternal: isProductionBuild() ? true : undefined,
     },
     plugins: [
+      checker({
+        typescript: true,
+        eslint: {
+          useFlatConfig: true,
+          lintCommand: 'eslint ./src',
+        },
+      }),
       viteStaticCopy({
         targets: [
           {
