@@ -5,19 +5,28 @@ import path from 'path'
 import postgres from 'postgres'
 import { fileURLToPath } from 'url'
 
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
+
 dotenv.config({
-  path: './.env.production',
+  path: path.resolve(dirname, '..', '.env.production'),
 })
 
 const run = async (): Promise<void> => {
-  const databaseURL = process.env['DATABASE_URL']
-    ? process.env.DATABASE_URL
-    : ''
-  const __filename = fileURLToPath(import.meta.url)
-  const __dirname = path.dirname(__filename)
-  const migrationsFolder = __dirname + '/migrations'
+  let migrationClient: postgres.Sql
   try {
-    const migrationClient = postgres(databaseURL, { max: 1 })
+    const databaseURL = process.env['DATABASE_URL']
+      ? process.env.DATABASE_URL
+      : ''
+    migrationClient = postgres(databaseURL, { max: 1 })
+    console.log('Migration client created successfully!')
+  } catch (error) {
+    console.log('Migration client creation failed!', error)
+    process.exit(0)
+  }
+
+  try {
+    const migrationsFolder = dirname + '/migrations'
     await migrate(drizzle(migrationClient), {
       migrationsFolder: migrationsFolder,
     })

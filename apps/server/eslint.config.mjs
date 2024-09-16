@@ -5,7 +5,7 @@ import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
   {
-    ignores: ['dist', 'prettier.config.mjs', 'vite.config.ts'],
+    ignores: ['node_modules', 'dist', 'prettier.config.mjs', 'vite.config.ts'],
   },
   {
     extends: [

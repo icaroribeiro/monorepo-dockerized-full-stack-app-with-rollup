@@ -9,7 +9,7 @@ const connectToDatabase = (): PostgresJsDatabase<Record<string, never>> => {
   try {
     const queryClient = postgres(getDatabaseURL())
     const db = drizzle(queryClient)
-    console.log('Database connection completed successfully!')
+    console.log('Database connected successfully!')
     return db
   } catch (error) {
     const message = 'Database connection failed!'
