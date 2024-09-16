@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
-import { defineConfig } from "drizzle-kit";
+import { defineConfig } from 'drizzle-kit'
 
-import { getDatabaseURL } from '../src/app/config/config'
+import { getDatabaseURL } from '../../src/app/config/config'
 
 dotenv.config({
   path: './.env.development',
