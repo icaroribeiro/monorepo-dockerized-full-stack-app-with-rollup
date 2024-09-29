@@ -1,29 +1,37 @@
 import { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
 import { container } from 'tsyringe'
 
-import { HealthCheckService } from '../api/components/health-check'
-import { UserRepository, UserService } from '../api/components/user'
+import {
+  HealthCheckService,
+  IHealthCheckService,
+} from '../api/components/health-check'
+import {
+  IUserRepository,
+  IUserService,
+  UserRepository,
+  UserService,
+} from '../api/components/user'
 import { connectToDatabase } from '../db/db'
 
 container.register<PostgresJsDatabase<Record<string, never>>>('db', {
   useValue: connectToDatabase(),
 })
 
-container.register<UserRepository>('IUserRepository', {
+container.register<IUserRepository>('UserRepository', {
   useValue: new UserRepository(
     container.resolve<PostgresJsDatabase<Record<string, never>>>('db'),
   ),
 })
 
-container.register<HealthCheckService>('IHealthCheckService', {
+container.register<IHealthCheckService>('HealthCheckService', {
   useValue: new HealthCheckService(
     container.resolve<PostgresJsDatabase<Record<string, never>>>('db'),
   ),
 })
 
-container.register<UserService>('IUserService', {
+container.register<IUserService>('UserService', {
   useValue: new UserService(
-    container.resolve<UserRepository>('IUserRepository'),
+    container.resolve<UserRepository>('UserRepository'),
   ),
 })
 

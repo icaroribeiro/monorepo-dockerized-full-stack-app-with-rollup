@@ -1,7 +1,7 @@
 {
 	"name": "monorepo",
 	"version": "1.0.0",
-	"description": "Turbo Monorepo for Dockerized Node.js and React full stack app with Rollup",
+	"description": "Turbo Monorepo with Dockerized Full Stack APP using Node.js/TypeScript and React.js with Vite",
 	"main": "index.js",
 	"author": "Ícaro Ribeiro",
 	"license": "ISC",
@@ -9,13 +9,12 @@
 		"apps/*",
 		"packages/*"
 	],
-	"packageManager": "pnpm@9.10.0",
+	"packageManager": "pnpm@9.11.0",
 	"scripts": {
 		"lint": "turbo run lint",
 		"lint:fix": "turbo run lint:fix",
 		"format": "turbo run format",
 		"test": "turbo run test",
-		"run:migration": "turbo run run:migration",
 		"build": "turbo run build"
 	},
 	"devDependencies": {

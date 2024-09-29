@@ -9,7 +9,7 @@ import { IUserService } from './user.service'
 @Route('users')
 @Tags('users')
 class UserController extends Controller {
-  constructor(@inject('IUserService') private userService: IUserService) {
+  constructor(@inject('UserService') private userService: IUserService) {
     super()
   }
 

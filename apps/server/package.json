@@ -17,7 +17,7 @@
     "routes:generate": "tsoa routes",
     "migr:generate": "drizzle-kit generate --config ./db/config/config.ts",
     "db:migrate": "drizzle-kit migrate --config ./db/config/config.ts",
-    "start:dev": "pnpm swagger:generate && pnpm routes:generate && pnpm vite-node --watch --mode development ./src/index.ts",
+    "start:dev": "pnpm swagger:generate && pnpm routes:generate && pnpm vite-node --watch --mode dev ./src/index.ts",
     "pre:build": "rimraf dist && mkdir dist",
     "make:bundle": "tsc -b && vite build --mode production",
     "build": "pnpm swagger:generate && pnpm routes:generate && pnpm pre:build && pnpm make:bundle"

@@ -10,7 +10,7 @@ import { IHealthCheckService } from './health-check.service'
 @Tags('health-check')
 class HealthCheckController extends Controller {
   constructor(
-    @inject('IHealthCheckService')
+    @inject('HealthCheckService')
     private healthCheckService: IHealthCheckService,
   ) {
     super()

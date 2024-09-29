@@ -46,7 +46,7 @@ RUN npm install tsx --global
 RUN npm install vite-node --global
 WORKDIR /app
 COPY --from=prod-deps /prod/server/node_modules ./node_modules
-COPY --from=builder /app/apps/server/.env.production ./.env.production
+COPY --from=builder /app/apps/server/.env ./.env
 COPY --from=builder /app/apps/server/db/migrations ./db/migrations
 COPY --from=builder /app/apps/server/db/migrate.ts ./db/migrate.ts
 COPY --from=builder /app/apps/server/dist ./dist
