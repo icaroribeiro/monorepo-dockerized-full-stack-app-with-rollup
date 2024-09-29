@@ -1,10 +1,12 @@
+import { getDisplay } from './config/config'
+
 function App() {
-  const display = process.env.DISPLAY2
+  const display = getDisplay()
   console.log(`Display: ${display}`)
   return (
     <>
       <div>
-        <h1>ABC{process.env.DISPLAY2}kkk222</h1>
+        <h1>ABC{display}kkk222</h1>
       </div>
     </>
   )

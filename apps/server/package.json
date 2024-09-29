@@ -19,7 +19,7 @@
     "db:migrate": "drizzle-kit migrate --config ./db/config/config.ts",
     "start:dev": "pnpm swagger:generate && pnpm routes:generate && pnpm vite-node --watch --mode dev ./src/index.ts",
     "pre:build": "rimraf dist && mkdir dist",
-    "make:bundle": "tsc -b && vite build --mode production",
+    "make:bundle": "tsc -b && vite build --mode prd",
     "build": "pnpm swagger:generate && pnpm routes:generate && pnpm pre:build && pnpm make:bundle"
   },
   "devDependencies": {
