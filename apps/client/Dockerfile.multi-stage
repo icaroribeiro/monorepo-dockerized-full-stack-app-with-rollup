@@ -15,9 +15,9 @@ COPY . .
 RUN pnpm install turbo --global
 RUN turbo prune client --docker
 
-# Stage 3: Configure the installer image
+# Stage 3: Configure the builder image
 # --------------------------------------------------
-FROM base AS installer
+FROM base AS builder
 RUN apk update
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -32,6 +32,7 @@ RUN pnpm turbo build --filter=client
 FROM node:20-slim AS runner
 RUN npm install serve --global
 WORKDIR /app
-COPY --from=installer /app/apps/client/dist ./dist
+COPY --from=builder /app/apps/client/dist ./dist
+COPY --from=builder /app/apps/client/scripts/startup.sh .
 EXPOSE ${PORT}
-CMD ["sh", "-c", "serve -s dist"]
+CMD ["/bin/bash","-c","./startup.sh"]

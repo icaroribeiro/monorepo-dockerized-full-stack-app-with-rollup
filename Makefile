@@ -8,21 +8,21 @@ shutdown-database:
 
 # Set of tasks related to the monorepo applications
 # --------------------------------------------------
-startup-all-apps:
+startup-all:
 	docker-compose up --build -d client server
 
-startup-client-app:
+startup-client:
 	docker-compose up --build -d client
 
-startup-server-app:
+startup-server:
 	docker-compose up --build -d server
 
 # Shutdown all applications
-shutdown-all-apps:
+shutdown-all:
 	docker-compose down -v --rmi local client server
 
-shutdown-client-app:
+shutdown-client:
 	docker-compose down -v --rmi local client
 
-shutdown-server-app:
+shutdown-server:
 	docker-compose down -v --rmi local server

@@ -49,5 +49,6 @@ COPY --from=prod-deps /prod/server/node_modules ./node_modules
 COPY --from=builder /app/apps/server/db/migrations ./db/migrations
 COPY --from=builder /app/apps/server/scripts/migrate.ts ./scripts/migrate.ts
 COPY --from=builder /app/apps/server/dist ./dist
+COPY --from=builder /app/apps/server/scripts/startup.sh .
 EXPOSE ${PORT}
-CMD ["sh", "-c", "tsx ./scripts/migrate.ts -- --dir=./db/migrations && vite-node ./dist/index.js"]
+CMD ["/bin/bash","-c","./startup.sh"]
