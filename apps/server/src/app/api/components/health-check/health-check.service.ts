@@ -1,7 +1,7 @@
 import { sql } from 'drizzle-orm'
 import { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
 
-import { HealthCheckResponse, MapHealthCheckResponse } from './health-check.dto'
+import { HealthCheckResponse, mapHealthCheckResponse } from './health-check.dto'
 import { HealthCheck } from './healthcheck.model'
 
 interface IHealthCheckService {
@@ -18,9 +18,9 @@ class HealthCheckService implements IHealthCheckService {
     } catch (error) {
       console.log(error)
       healthCheck.healthy = false
-      return MapHealthCheckResponse(healthCheck)
+      return mapHealthCheckResponse(healthCheck)
     }
-    return MapHealthCheckResponse(healthCheck)
+    return mapHealthCheckResponse(healthCheck)
   }
 }
 

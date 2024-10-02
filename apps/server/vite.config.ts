@@ -1,10 +1,7 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
-import checker from 'vite-plugin-checker'
 
 export default defineConfig(({ command, mode }) => {
-  const env = loadEnv(mode, process.cwd())
-
   const isProductionBuild = () => command === 'build' && mode === 'production'
 
   return {
@@ -21,13 +18,6 @@ export default defineConfig(({ command, mode }) => {
       noExternal: isProductionBuild() ? true : undefined,
     },
     plugins: [
-      checker({
-        typescript: true,
-        eslint: {
-          useFlatConfig: true,
-          lintCommand: 'eslint ./src',
-        },
-      }),
       viteStaticCopy({
         targets: [
           {
@@ -53,12 +43,6 @@ export default defineConfig(({ command, mode }) => {
         ],
       }),
     ],
-    define: {
-      'process.env': {
-        PORT: env.VITE_PORT,
-        DATABASE_URL: env.VITE_DATABASE_URL,
-      },
-    },
     test: {
       include: ['src/**/*.test.ts'],
       coverage: {

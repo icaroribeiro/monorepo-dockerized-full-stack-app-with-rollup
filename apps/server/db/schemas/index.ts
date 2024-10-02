@@ -1,1 +1,1 @@
-export * from './public'
+export * from './user.table'

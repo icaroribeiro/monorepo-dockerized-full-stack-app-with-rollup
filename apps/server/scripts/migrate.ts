@@ -1,18 +1,12 @@
-import dotenv from 'dotenv'
 import { drizzle } from 'drizzle-orm/postgres-js'
 import { migrate } from 'drizzle-orm/postgres-js/migrator'
-import path from 'path'
 import postgres from 'postgres'
-import { fileURLToPath } from 'url'
-
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
-
-dotenv.config({
-  path: path.resolve(dirname, '..', '.env.production'),
-})
 
 const run = async (): Promise<void> => {
+  const args = process.argv.slice(2)
+  const dirArg = args.find((arg) => arg.startsWith('--dir='))
+  const dirname = dirArg ? dirArg.split('=')[1] : ''
+
   let migrationClient: postgres.Sql
   try {
     const databaseURL = process.env['DATABASE_URL']
@@ -26,7 +20,7 @@ const run = async (): Promise<void> => {
   }
 
   try {
-    const migrationsFolder = dirname + '/migrations'
+    const migrationsFolder = dirname
     await migrate(drizzle(migrationClient), {
       migrationsFolder: migrationsFolder,
     })

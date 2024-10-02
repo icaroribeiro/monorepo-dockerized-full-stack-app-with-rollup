@@ -1,6 +1,6 @@
 {
-  "id": "b3e14d80-dc35-4669-80ab-f75dcb95ead8",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "385630fe-a3d2-4c55-82a7-82c83a0e8fbe",
+  "prevId": "b3e14d80-dc35-4669-80ab-f75dcb95ead8",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -20,8 +20,8 @@
           "primaryKey": false,
           "notNull": true
         },
-        "cpf2": {
-          "name": "cpf2",
+        "cpf3": {
+          "name": "cpf3",
           "type": "text",
           "primaryKey": false,
           "notNull": false

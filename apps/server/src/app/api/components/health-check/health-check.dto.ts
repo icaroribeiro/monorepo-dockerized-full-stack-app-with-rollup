@@ -4,10 +4,10 @@ type HealthCheckResponse = {
   healthy: boolean
 }
 
-const MapHealthCheckResponse = (
+const mapHealthCheckResponse = (
   healthCheck: HealthCheck,
 ): HealthCheckResponse => ({
   healthy: healthCheck.healthy,
 })
 
-export { HealthCheckResponse, MapHealthCheckResponse }
+export { HealthCheckResponse, mapHealthCheckResponse }

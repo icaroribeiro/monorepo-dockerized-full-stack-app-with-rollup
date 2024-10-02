@@ -46,11 +46,8 @@ RUN npm install tsx --global
 RUN npm install vite-node --global
 WORKDIR /app
 COPY --from=prod-deps /prod/server/node_modules ./node_modules
-COPY --from=builder /app/apps/server/.env ./.env
 COPY --from=builder /app/apps/server/db/migrations ./db/migrations
-COPY --from=builder /app/apps/server/db/migrate.ts ./db/migrate.ts
+COPY --from=builder /app/apps/server/scripts/migrate.ts ./scripts/migrate.ts
 COPY --from=builder /app/apps/server/dist ./dist
-ENV PORT=5000
-ENV NODE_ENV=production
 EXPOSE ${PORT}
-CMD ["sh", "-c", "tsx ./db/migrate.ts && vite-node ./dist/index.js"]
+CMD ["sh", "-c", "tsx ./scripts/migrate.ts -- --dir=./db/migrations && vite-node ./dist/index.js"]
