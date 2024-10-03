@@ -10,19 +10,19 @@ class App {
 
   public constructor() {
     this._innerApp.use(json())
-    const swaggerUiOpts = {
-      swaggerUrl: '/api-docs/swagger.json',
-    }
-    this._innerApp.get(
-      '/api-docs/swagger.json',
-      (req: Request, res: Response) => res.json(swaggerDocument),
-    )
-    this._innerApp.use(
-      '/api-docs',
-      swaggerUi.serveFiles(undefined, swaggerUiOpts),
-      swaggerUi.setup(undefined, swaggerUiOpts),
-    )
-    RegisterRoutes(this._innerApp)
+    // const swaggerUiOpts = {
+    //   swaggerUrl: '/api-docs/swagger.json',
+    // }
+    // this._innerApp.get(
+    //   '/api-docs/swagger.json',
+    //   (req: Request, res: Response) => res.json(swaggerDocument),
+    // )
+    // this._innerApp.use(
+    //   '/api-docs',
+    //   swaggerUi.serveFiles(undefined, swaggerUiOpts),
+    //   swaggerUi.setup(undefined, swaggerUiOpts),
+    // )
+    // RegisterRoutes(this._innerApp)
     // this._app.use(errorMiddleware)
   }
 

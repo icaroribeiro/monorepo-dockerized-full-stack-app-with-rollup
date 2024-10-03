@@ -12,6 +12,7 @@ const ignoreConfig = {
     "dist",
     "eslint.config.mjs",
     "prettier.config.mjs",
+    "scripts/migrate.mjs",
     "vite.config.ts"
   ]
 };

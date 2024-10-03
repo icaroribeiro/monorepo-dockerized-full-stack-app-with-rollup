@@ -1,3 +1,6 @@
+check-deps:
+	pnpm run check-deps
+
 # Set of tasks related to the database
 # --------------------------------------------------
 startup-database:

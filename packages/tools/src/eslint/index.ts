@@ -8,7 +8,7 @@ import type { ConfigWithExtends } from "typescript-eslint";
 import tseslint from "typescript-eslint";
 
 const ignoreConfig: ConfigWithExtends = {
-	name: "ignore",
+	name: "ignore-config",
 	ignores: [
 		"node_modules",
 		"dist",
@@ -16,6 +16,11 @@ const ignoreConfig: ConfigWithExtends = {
 		"prettier.config.mjs",
 		"vite.config.ts",
 	],
+};
+
+const ignoreScripts: ConfigWithExtends = {
+	name: "ignore-scripts",
+	ignores: ["scripts/migrate.mjs"],
 };
 
 type TSConfigArgs = {
@@ -101,6 +106,7 @@ const simpleImportSortConfig: ConfigWithExtends = {
 const getServerConfig = (tsConfigArgs: TSConfigArgs) =>
 	tseslint.config(
 		ignoreConfig,
+		ignoreScripts,
 		tsConfig(tsConfigArgs),
 		eslint.configs.recommended,
 		...tseslint.configs.recommended,

@@ -1,0 +1,1 @@
+ALTER TABLE "user" RENAME COLUMN "cpf6" TO "cpf7";

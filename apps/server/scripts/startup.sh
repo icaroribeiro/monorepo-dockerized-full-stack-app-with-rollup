@@ -1,4 +1,4 @@
 #! /bin/bash
 
-tsx ./scripts/migrate.ts -- --dir=./db/migrations
+node ./scripts/migrate.mjs -- --dir=./db/migrations
 vite-node ./dist/index.js

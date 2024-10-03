@@ -2,12 +2,11 @@ import { drizzle } from 'drizzle-orm/postgres-js'
 import { migrate } from 'drizzle-orm/postgres-js/migrator'
 import postgres from 'postgres'
 
-const run = async (): Promise<void> => {
+const run = async () => {
   const args = process.argv.slice(2)
   const dirArg = args.find((arg) => arg.startsWith('--dir='))
   const dirname = dirArg ? dirArg.split('=')[1] : ''
-
-  let migrationClient: postgres.Sql
+  let migrationClient
   try {
     const databaseURL = process.env['DATABASE_URL']
       ? process.env.DATABASE_URL
@@ -18,7 +17,6 @@ const run = async (): Promise<void> => {
     console.log('Migration client creation failed!', error)
     process.exit(0)
   }
-
   try {
     const migrationsFolder = dirname
     await migrate(drizzle(migrationClient), {
