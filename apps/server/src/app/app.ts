@@ -22,7 +22,7 @@ class App {
       swaggerUi.serveFiles(undefined, swaggerUiOpts),
       swaggerUi.setup(undefined, swaggerUiOpts),
     )
-    // RegisterRoutes(this._innerApp)
+    RegisterRoutes(this._innerApp)
     // this._app.use(errorMiddleware)
   }
 
