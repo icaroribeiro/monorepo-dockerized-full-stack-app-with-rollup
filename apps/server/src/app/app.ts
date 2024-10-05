@@ -1,4 +1,4 @@
-import express, { Application, json, Request, Response } from 'express'
+import express, { Application, json, Request, Response, Router } from 'express'
 import swaggerUi from 'swagger-ui-express'
 
 // import { errorMiddleware } from './middlewares'
@@ -22,7 +22,8 @@ class App {
       swaggerUi.serveFiles(undefined, swaggerUiOpts),
       swaggerUi.setup(undefined, swaggerUiOpts),
     )
-    RegisterRoutes(this._innerApp)
+    const router = Router()
+    RegisterRoutes(router)
     // this._app.use(errorMiddleware)
   }
 

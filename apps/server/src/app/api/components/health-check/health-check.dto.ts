@@ -1,13 +1,13 @@
-import { HealthCheck } from './healthcheck.model'
+// import { HealthCheck } from './healthcheck.model'
 
-type HealthCheckResponse = {
-  healthy: boolean
-}
+// type HealthCheckResponse = {
+//   healthy: boolean
+// }
 
-const mapHealthCheckResponse = (
-  healthCheck: HealthCheck,
-): HealthCheckResponse => ({
-  healthy: healthCheck.healthy,
-})
+// const mapHealthCheckResponse = (
+//   healthCheck: HealthCheck,
+// ): HealthCheckResponse => ({
+//   healthy: healthCheck.healthy,
+// })
 
-export { HealthCheckResponse, mapHealthCheckResponse }
+// export { HealthCheckResponse, mapHealthCheckResponse }

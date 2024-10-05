@@ -1,3 +1,3 @@
-export type HealthCheck = {
-  healthy: boolean
-}
+// export type HealthCheck = {
+//   healthy: boolean
+// }

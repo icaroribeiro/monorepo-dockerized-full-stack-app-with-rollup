@@ -46,7 +46,7 @@
     "http-status": "^1.7.4",
     "postgres": "^3.4.4",
     "swagger-ui-express": "^5.0.1",
-    "tsoa": "^6.4.0",
+    "tsoa": "^6.3.1",
     "tsyringe": "^4.8.0"
   }
 }

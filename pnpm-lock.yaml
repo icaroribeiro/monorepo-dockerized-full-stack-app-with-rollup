@@ -76,7 +76,7 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1(express@4.19.2)
       tsoa:
-        specifier: ^6.4.0
+        specifier: ^6.3.1
         version: 6.4.0
       tsyringe:
         specifier: ^4.8.0
@@ -1734,10 +1734,6 @@ packages:
     resolution: {integrity: sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/EpkhB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw==}
     engines: {node: '>=12'}
     hasBin: true
-
-  escalade@3.1.2:
-    resolution: {integrity: sha512-ErCHMCae19vR8vQGe50xIsVomy19rg6gFu3+r3jkEO46suLMWBksvVyoGgQV+jOfl84ZSOSlmv6Gxa89PmTGmA==}
-    engines: {node: '>=6'}
 
   escalade@3.2.0:
     resolution: {integrity: sha512-WUj2qlxaQtO4g6Pq5c29GTcWGDyd8itL8zTlipgECz3JesAiiOKotd8JU6otB3PACgG6xkJUyVhboMS+bje/jA==}
@@ -3830,7 +3826,7 @@ snapshots:
       merge-anything: 5.1.7
       minimatch: 9.0.5
       ts-deepmerge: 7.0.1
-      typescript: 5.5.4
+      typescript: 5.6.2
       validator: 13.12.0
       yaml: 2.5.1
       yargs: 17.7.2
@@ -4675,8 +4671,6 @@ snapshots:
       '@esbuild/win32-arm64': 0.21.5
       '@esbuild/win32-ia32': 0.21.5
       '@esbuild/win32-x64': 0.21.5
-
-  escalade@3.1.2: {}
 
   escalade@3.2.0: {}
 
@@ -6077,7 +6071,7 @@ snapshots:
   yargs@17.7.2:
     dependencies:
       cliui: 8.0.1
-      escalade: 3.1.2
+      escalade: 3.2.0
       get-caller-file: 2.0.5
       require-directory: 2.1.1
       string-width: 4.2.3
