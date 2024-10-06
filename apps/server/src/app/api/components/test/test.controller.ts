@@ -1,15 +1,19 @@
-import { Request, Response } from 'express'
 import { OK } from 'http-status'
-import { Post } from 'tsoa'
+import { Controller } from 'tsoa'
+import { injectable } from 'tsyringe'
 
-class TestController {
-  constructor() {}
+@injectable()
+// @Route('tests')
+// @Tags('tests')
+class TestController extends Controller {
+  constructor() {
+    super()
+  }
 
-  @Post('/')
-  getTest(req: Request, res: Response): Response {
-    return res.status(OK).json({
-      test: true,
-    })
+  // @Post('/')
+  getTest() {
+    this.setStatus(OK)
+    return
   }
 }
 

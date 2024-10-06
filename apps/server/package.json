@@ -20,7 +20,7 @@
     "start:dev": "tsoa spec-and-routes && pnpm vite-node --watch --mode development ./src/index.ts",
     "pre:build": "rimraf dist && mkdir dist",
     "make:bundle": "tsc -b && vite build --mode production",
-    "build": "tsoa spec-and-routes && pnpm pre:build && pnpm make:bundle"
+    "build": "pnpm pre:build && pnpm make:bundle"
   },
   "devDependencies": {
     "@monorepo/tools": "workspace:*",
